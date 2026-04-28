@@ -12,24 +12,34 @@ import Navbar from "./components/Navbar/Navbar";
 /* ─── Animation Variants ─── */
 const blurFadeUp = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)", 
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const } // Adicionado 'as const'
+  },
 };
+
 const popIn = {
   hidden: { opacity: 0, scale: 0.94, y: 20, filter: "blur(6px)" },
-  visible: { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    y: 0, 
+    filter: "blur(0px)", 
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] as const } // Adicionado 'as const'
+  },
 };
+
 const slideLeft = {
   hidden: { opacity: 0, x: -48, filter: "blur(8px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)", 
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const } // Adicionado 'as const'
+  },
 };
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
-};
-const stagger = (delay = 0.12) => ({
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: delay } },
-});
 
 const VP = { once: true, margin: "-60px" } as const;
 
