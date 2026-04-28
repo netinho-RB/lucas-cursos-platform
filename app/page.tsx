@@ -6,7 +6,7 @@ import {
   GraduationCap, BookOpen, CheckCircle2, Award,
 } from "lucide-react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, Variants } from "framer-motion"; // ADICIONADO: Variants
 import Navbar from "./components/Navbar/Navbar";
 
 /* ─── Animation Variants ─── */
