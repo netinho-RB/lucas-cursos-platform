@@ -6,42 +6,53 @@ import {
   GraduationCap, BookOpen, CheckCircle2, Award,
 } from "lucide-react";
 import Image from "next/image";
-import { motion, useReducedMotion, Variants } from "framer-motion"; // ADICIONADO: Variants
+import { motion, useReducedMotion, Variants } from "framer-motion";
 import Navbar from "./components/Navbar/Navbar";
 
 /* ─── Animation Variants ─── */
-const blurFadeUp = {
+const blurFadeUp: Variants = {
   hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
   visible: { 
     opacity: 1, 
     y: 0, 
     filter: "blur(0px)", 
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const } // Adicionado 'as const'
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const } 
   },
 };
 
-const popIn = {
+const popIn: Variants = {
   hidden: { opacity: 0, scale: 0.94, y: 20, filter: "blur(6px)" },
   visible: { 
     opacity: 1, 
     scale: 1, 
     y: 0, 
     filter: "blur(0px)", 
-    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] as const } // Adicionado 'as const'
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] as const } 
   },
 };
 
-const slideLeft = {
+const slideLeft: Variants = {
   hidden: { opacity: 0, x: -48, filter: "blur(8px)" },
   visible: { 
     opacity: 1, 
     x: 0, 
     filter: "blur(0px)", 
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const } // Adicionado 'as const'
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const } 
   },
 };
 
+const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const stagger = (delay = 0.12): Variants => ({
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: delay } },
+});
+
 const VP = { once: true, margin: "-60px" } as const;
+
 
 const specialties = [
   { icon: Activity, title: "Cirurgia Ortognática", desc: "Correção de deformidades dentofaciais, devolvendo não apenas a estética harmônica, mas a função mastigatória e respiratória ideal." },
@@ -65,13 +76,13 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const reduce = useReducedMotion();
 
-  const bfu = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : blurFadeUp;
-  const pi  = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : popIn;
-  const sl  = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : slideLeft;
+  // ADICIONADO: : Variants em cada uma delas para o TypeScript aceitar a lógica
+  const bfu: Variants = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : blurFadeUp;
+  const pi: Variants  = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : popIn;
+  const sl: Variants  = reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : slideLeft;
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground font-sans selection:bg-primary/20 selection:text-primary-hover">
-
       <Navbar
         mobileOpen={mobileMenuOpen}
         onMobileOpen={() => setMobileMenuOpen(true)}
